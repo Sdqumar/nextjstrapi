@@ -8,13 +8,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "strapi":"cd strapi && yarn start",
+    "start": "concurrently \" yarn strapi  \" \"next start -p 3000\"",
+    "build-strapi":"cd starpi && yarn install",
+    "heroku-postbuild":"build-strapi"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "next": "^12.0.4",
+    "pg-connection-string": "^2.5.0",
     "react": "17.0.2",
     "react-dom": "^17.0.2"
   },
