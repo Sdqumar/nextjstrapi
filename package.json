@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "strapi":"cd strapi && yarn start",
-    "start": "concurrently \" yarn strapi  \" \"next\"",
+    "start": "concurrently  \"yarn strapi \"",
     "build-strapi":"cd strapi &&  yarn install",
     "heroku-postbuild":"yarn build-strapi"
   },

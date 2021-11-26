@@ -1,3 +1,4 @@
+const serve = require('koa-serve')
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337 || process.env.port),
@@ -7,3 +8,14 @@ module.exports = ({ env }) => ({
     },
   },
 });
+module.exports = strapi => {
+  return {
+    initialize() {
+      strapi.app.use(async (ctx, next) => {
+        serve('assets', '/build')
+        await next();
+      });
+    },
+  };
+};
+ 
