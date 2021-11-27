@@ -6,7 +6,8 @@ import {
   uploadProduct,
   getContentSlots,
   setContentSlot,
-  deleteImage
+  deleteImage,
+  updateProduct
 } from "./actions";
 import { images } from "./data";
 import { Button } from "@material-ui/core";
@@ -15,6 +16,7 @@ export default function App() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product?.products);
   const contentSlots = useSelector((state) => state.product?.contentSlots);
+
 
   useEffect(() => {
     dispatch(uploadProduct(images));
@@ -31,6 +33,7 @@ export default function App() {
   const onDeleteImage = () => {
     const ids = ["111", "333"];
     dispatch(deleteImage(ids));
+    dispatch(updateProduct())
   };
 
   return (

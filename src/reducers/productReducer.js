@@ -8,7 +8,9 @@ export const initialState = {
   contentSlots: []
 };
 
+
 const appReducer = (state = initialState, action) => {
+ 
   switch (action.type) {
     case appConstants.GET_CONTENT_SLOTS_SUCCESS:
       return {
@@ -90,22 +92,7 @@ const appReducer = (state = initialState, action) => {
     case appConstants.UPDATE_PRODUCT_SUCCESS:
       return {
         ...state,
-        products: state.products.map((product) => ({
-          ...product,
-          productImages: product.productImages.map((p) => {
-            const isErrorMatches = state.errors.some(
-              (data) => data.id === p.imageFileName
-            );
-
-            return {
-              ...p,
-              hasError: isErrorMatches ? true : false,
-              msg: isErrorMatches
-                ? state.errors.find((data) => data.id === p.imageFileName)
-                : []
-            };
-          })
-        }))
+        products: state.products.filter((product)=>product.productImages.length >= 1)
       };
 
     case appConstants.SAVE_PRODUCT_SUCCESS:
@@ -181,7 +168,6 @@ const appReducer = (state = initialState, action) => {
           )
         }))
       };
-
     default:
       return state;
   }
