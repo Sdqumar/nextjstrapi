@@ -24,8 +24,9 @@ export default function MediaCard({
     data.hasError &&
     data.msg?.validationMessages.map((data) => data.validationMessages)[0];
 
-  const onChangeContentSlot = (slot, dp) =>
-    d(changeProductSlots({ id: data.imageFileName, value: slot }, dp));
+  const onChangeContentSlot = (slot, dp) =>{
+    d(changeProductSlots({ id: data.imageFileName, value: slot }, dp))
+  };
 
   return (
     <Card
@@ -53,14 +54,7 @@ export default function MediaCard({
         <Autocomplete
           fullWidth
           size="small"
-          options={
-            Boolean(dataProduct.slot) && dataProduct.slot.length > 0
-              ? contentSlots.filter(
-                  (slot) =>
-                    !dataProduct.slot.find((data) => data.value.id === slot.id)
-                )
-              : contentSlots
-          }
+          options={contentSlots}
           renderInput={(params) => (
             <TextField
               {...params}
